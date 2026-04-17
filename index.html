@@ -1,0 +1,730 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bnb - Restaurant à Ivry-sur-Seine. Découvrez notre cuisine généreuse et nos spécialités. Réservez votre table dès aujourd'hui.">
+    <title>Bnb - Restaurant à Ivry-sur-Seine</title>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Bnb",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "39 Rue Gabriel Péri",
+            "addressLocality": "Ivry-sur-Seine",
+            "postalCode": "94200",
+            "addressCountry": "FR"
+        },
+        "url": "https://restaurant-bnb.fr",
+        "servesCuisine": "Française",
+        "priceRange": "€€",
+        "image": "https://restaurant-bnb.fr/restaurant.jpg"
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #d4af37;
+            --accent: #f5f5f5;
+            --text: #333333;
+            --light-bg: #fafafa;
+            --border: #e0e0e0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background-color: var(--accent);
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+            color: rgba(212, 175, 55, 0.8);
+            font-style: italic;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+            color: white;
+            padding: 6rem 1rem;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 0.95rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            border: 2px solid var(--secondary);
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        /* INFO SECTION */
+        .info-section {
+            background-color: var(--light-bg);
+            padding: 3rem 1rem;
+        }
+
+        .info-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .info-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 4px;
+            border-left: 4px solid var(--secondary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .info-card h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-card p {
+            color: var(--text);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .info-card a:hover {
+            color: var(--primary);
+        }
+
+        /* MENU SECTION */
+        .menu-section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .menu-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .menu-category h3 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.8rem;
+        }
+
+        .menu-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .menu-item-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+            font-size: 1.05rem;
+        }
+
+        .menu-item-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        .menu-item-price {
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* ABOUT SECTION */
+        .about-section {
+            background-color: var(--light-bg);
+            padding: 4rem 1rem;
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-section p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .highlight {
+            background: white;
+            padding: 2rem;
+            border-radius: 4px;
+            border-top: 3px solid var(--secondary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .highlight h4 {
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .highlight p {
+            font-size: 0.95rem;
+            color: #666;
+            margin: 0;
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .contact-info h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .contact-info strong {
+            color: var(--primary);
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-buttons a, 
+        .contact-buttons button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--primary);
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .contact-buttons a:hover,
+        .contact-buttons button:hover {
+            background-color: var(--primary);
+            color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .map-container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            height: 100%;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .map-container h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .map-container p {
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+
+        .map-container a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .map-container a:hover {
+            color: var(--primary);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary);
+            color: var(--secondary);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+            font-size: 0.95rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .menu-section h2,
+            .about-section h2,
+            .contact-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .tagline {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* SCROLL SMOOTH */
+        a[href^="#"] {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <div class="logo">Bnb</div>
+            <div class="tagline">Saveurs généreuses & moments partagés</div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bienvenue chez Bnb</h1>
+            <p>Une cuisine généreuse et savoureuse dans une ambiance chaleureuse à Ivry-sur-Seine</p>
+            <a href="#menu" class="cta-button">Découvrez le Menu</a>
+        </div>
+    </section>
+
+    <!-- INFO RAPIDE -->
+    <section class="info-section">
+        <div class="info-container">
+            <div class="info-card">
+                <h3>📍 Localisation</h3>
+                <p><strong>39 Rue Gabriel Péri</strong></p>
+                <p>94200 Ivry-sur-Seine, France</p>
+                <a href="https://www.google.com/maps/search/Bnb+39+Rue+Gabriel+P%C3%A9ri+Ivry-sur-Seine" target="_blank" rel="noopener">Voir sur Google Maps →</a>
+            </div>
+            <div class="info-card">
+                <h3>🕐 Horaires</h3>
+                <p><strong>Lundi - Jeudi :</strong> 11h30 - 23h00</p>
+                <p><strong>Vendredi - Samedi :</strong> 11h30 - 00h00</p>
+                <p><strong>Dimanche :</strong> 12h00 - 22h30</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="menu-section" id="menu">
+        <h2>Notre Menu</h2>
+        <p class="section-subtitle">Saveurs authentiques & créations maison</p>
+        
+        <div class="menu-grid">
+            <!-- Entrées -->
+            <div class="menu-category">
+                <h3>Entrées</h3>
+                
+                <div class="menu-item">
+                    <div class="menu-item-name">Soupe à l'Oignon</div>
+                    <div class="menu-item-desc">Gratinée au fromage, recette traditionnelle</div>
+                    <div class="menu-item-price">8€</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Salade Niçoise</div>
+                    <div class="menu-item-desc">Tomates, œufs, thon frais, olives noires</div>
+                    <div class="menu-item-price">10€</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Assiette Charcuterie & Fromage</div>
+                    <div class="menu-item-desc">Sélection de nos meilleurs produits régionaux</div>
+                    <div class="menu-item-price">12€</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Calamars à l'Encre</div>
+                    <div class="menu-item-desc">Tendres et savoureux, sauce citron</div>
+                    <div class="menu-item-price">11€</div>
+                </div>
+            </div>
+
+            <!-- Plats Principaux -->
+            <div class="menu-category">
+                <h3>Plats Principaux</h3>
+                
+                <div class="menu-item">
+                    <div class="menu-item-name">Coq au Vin</div>
+                    <div class="menu-item-desc">Cuit lentement au vin rouge, légumes racines</div>
+                    <div class="menu-item-price">16€</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Steak Frites</div>
+                    <div class="menu-item-desc">Viande tendre & saignante, frites maison</div>
+                    <div class="menu-item-price">18€</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Branzino Rôti</div>
+                    <div class="menu-item-desc">Filet de bar, herbes et citron frais</div>
+                    <div class="menu-item-price">17€</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Pâtes Carbonara</div>
+                    <div class="menu-item-desc">Crème fraîche, œufs, pancetta croustillante</div>
+                    <div class="menu-item-price">13€</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Magret de Canard</div>
+                    <div class="menu-item-desc">Sauce aux cerises, accompagnements de saison</div>
+                    <div class="menu-item-price">19€</div>
+                </div>
+            </div>
+
+            <!-- Desserts & Boissons -->
+            <div class="menu-category">
+                <h3>Desserts</h3>
+                
+                <div class="menu-item">
+                    <div class="menu-item-name">Tiramisu Maison</div>
+                    <div class="menu-item-desc">Mascarpone, cacao, cuillerées de café</div>
+                    <div class="menu-item-price">7€</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Crème Brûlée</div>
+                    <div class="menu-item-desc">Caramélisée à la vanille de Tahiti</div>
+                    <div class="menu-item-price">7€</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Tarte Tatin</div>
+                    <div class="menu-item-desc">Pommes caramélisées, pâte feuilletée</div>
+                    <div class="menu-item-price">6€</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Chocolat Fondant</div>
+                    <div class="menu-item-desc">Coulant au cœur, servi avec glaçon vanille</div>
+                    <div class="menu-item-price">7€</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-item-name">Sorbet Maison</div>
+                    <div class="menu-item-desc">Fruits frais selon la saison</div>
+                    <div class="menu-item-price">5€</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem; padding: 2rem; background: white; border-radius: 4px; border-left: 4px solid #d4af37;">
+            <p style="color: #666; font-size: 1rem; margin: 0;">
+                <strong>Menu complet disponible à la carte.</strong> Nous proposons également des formules spéciales en semaine. <br>
+                N'hésitez pas à nous contacter pour les allergies et régimes particuliers.
+            </p>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section">
+        <div class="about-container">
+            <h2>À Propos de Bnb</h2>
+            <p>
+                Depuis son ouverture, le restaurant Bnb s'est établi comme un incontournable de la gastronomie à Ivry-sur-Seine. 
+                Nous mettons à l'honneur les saveurs authentiques de la cuisine française traditionnelle, réinterprétées avec créativité 
+                et passion par notre équipe de chefs expérimentés.
+            </p>
+            <p>
+                Chaque plat est préparé avec des ingrédients frais et de qualité, sourcés auprès de producteurs locaux. 
+                Notre ambiance chaleureuse et accueillante en fait le lieu idéal pour les repas en famille, entre amis, ou en amoureux.
+            </p>
+
+            <div class="about-highlights">
+                <div class="highlight">
+                    <h4>🍽️ Cuisine Généreuse</h4>
+                    <p>Des portions généreuses et savoureux qui reflètent notre passion pour la bonne cuisine</p>
+                </div>
+                <div class="highlight">
+                    <h4>🌿 Ingrédients Frais</h4>
+                    <p>Approvisionnement local et produits de saison pour une qualité optimale</p>
+                </div>
+                <div class="highlight">
+                    <h4>👨‍🍳 Équipe Expérimentée</h4>
+                    <p>Chefs passionnés et personnel attentif pour votre confort</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section">
+        <h2>Nous Contacter</h2>
+        
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Coordonnées</h3>
+                
+                <p>
+                    <strong>Adresse</strong><br>
+                    39 Rue Gabriel Péri<br>
+                    94200 Ivry-sur-Seine, France
+                </p>
+
+                <p>
+                    <strong>Horaires d'ouverture</strong><br>
+                    Lun-Jeu : 11h30 - 23h00<br>
+                    Ven-Sam : 11h30 - 00h00<br>
+                    Dim : 12h00 - 22h30
+                </p>
+
+                <p>
+                    <strong>Nos Services</strong><br>
+                    ✓ Dîner sur place<br>
+                    ✓ Réservations possible<br>
+                    ✓ Ambiance conviviale
+                </p>
+
+                <div class="contact-buttons">
+                    <a href="https://www.google.com/maps/search/Bnb+39+Rue+Gabriel+P%C3%A9ri+Ivry-sur-Seine" target="_blank" rel="noopener">
+                        📍 Google Maps
+                    </a>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <h3>Localisation</h3>
+                <p>Retrouvez-nous facilement à Ivry-sur-Seine</p>
+                <p style="font-size: 0.9rem; color: #999;">
+                    39 Rue Gabriel Péri<br>
+                    94200 Ivry-sur-Seine<br>
+                    Île-de-France, France
+                </p>
+                <a href="https://www.google.com/maps/search/Bnb+39+Rue+Gabriel+P%C3%A9ri+Ivry-sur-Seine" target="_blank" rel="noopener">
+                    Voir sur Google Maps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>Bnb</strong> - 39 Rue Gabriel Péri, 94200 Ivry-sur-Seine</p>
+        <p>&copy; 2024 Bnb. Tous droits réservés.</p>
+        <p>Créé avec passion pour votre plaisir gourmand</p>
+    </footer>
+</body>
+</html>
+```
