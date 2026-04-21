@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bnb - Restaurant à Ivry-sur-Seine. Découvrez notre cuisine généreuse et nos spécialités. Réservez votre table dès aujourd'hui.">
-    <title>Bnb - Restaurant à Ivry-sur-Seine</title>
+    <meta name="description" content="Bnb - Restaurant gastronomique à Ivry-sur-Seine. Cuisine généreuse, ambiance chaleureuse, réservations en ligne.">
+    <title>Bnb - Restaurant Gastronomique à Ivry-sur-Seine</title>
     
     <script type="application/ld+json">
     {
@@ -33,12 +33,17 @@
         }
 
         :root {
-            --primary: #1a1a1a;
-            --secondary: #d4af37;
-            --accent: #f5f5f5;
-            --text: #333333;
-            --light-bg: #fafafa;
-            --border: #e0e0e0;
+            --primary-dark: #0d1117;
+            --primary-light: #1a1f2e;
+            --accent-gold: #c9a961;
+            --accent-rose: #d4698f;
+            --accent-copper: #b8860b;
+            --text-primary: #2c3e50;
+            --text-light: #ecf0f1;
+            --bg-light: #f8f9fa;
+            --bg-lighter: #fafbfc;
+            --border-subtle: #e8e8e8;
+            --success: #27ae60;
         }
 
         html {
@@ -47,201 +52,504 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text);
-            background-color: var(--accent);
+            color: var(--text-primary);
+            background-color: var(--bg-lighter);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* HEADER */
+        /* ===== HEADER ===== */
         header {
-            background-color: var(--primary);
-            color: var(--secondary);
-            padding: 1.5rem 1rem;
-            text-align: center;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a2a3a 50%, var(--primary-light) 100%);
+            color: var(--accent-gold);
+            padding: 1.5rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(201, 169, 97, 0.15);
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            border-bottom: 3px solid var(--accent-gold);
+            backdrop-filter: blur(10px);
         }
 
         .header-content {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            flex: 1;
         }
 
         .logo {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 4px;
             text-transform: uppercase;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-rose));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 10px rgba(201, 169, 97, 0.3);
+        }
+
+        .logo:hover {
+            transform: scale(1.1) rotate(-1deg);
+            filter: drop-shadow(0 0 8px rgba(201, 169, 97, 0.5));
         }
 
         .tagline {
             font-size: 0.95rem;
-            margin-top: 0.5rem;
-            color: rgba(212, 175, 55, 0.8);
+            margin-top: 0.3rem;
+            color: rgba(212, 175, 55, 0.7);
             font-style: italic;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
 
-        /* HERO SECTION */
+        .header-nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-rose));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .reserve-btn {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-rose));
+            color: var(--primary-dark);
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(201, 169, 97, 0.3);
+        }
+
+        .reserve-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(201, 169, 97, 0.5);
+        }
+
+        /* ===== HERO SECTION ===== */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a2a3a 50%, var(--primary-light) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="dots" patternUnits="userSpaceOnUse" width="60" height="60"><circle cx="30" cy="30" r="2" fill="%23c9a961" opacity="0.1"/></pattern><linearGradient id="grad" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" style="stop-color:%23c9a961;stop-opacity:0.05" /><stop offset="100%25" style="stop-color:%23d4698f;stop-opacity:0.05" /></linearGradient></defs><rect width="1200" height="600" fill="url(%23grad)"/><rect width="1200" height="600" fill="url(%23dots)"/></svg>');
+            background-size: cover;
+            background-position: center;
             color: white;
-            padding: 6rem 1rem;
+            padding: 8rem 2rem;
             text-align: center;
-            min-height: 400px;
+            min-height: 650px;
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(201, 169, 97, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: floatSlow 10s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -15%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 105, 143, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: floatMedium 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(30px) scale(1.05); }
+        }
+
+        @keyframes floatMedium {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(40px); }
         }
 
         .hero-content {
-            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            color: var(--secondary);
+            font-size: 4.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-rose), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 3px 10px rgba(201, 169, 97, 0.4);
+            letter-spacing: 2px;
+            line-height: 1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
         }
 
         .hero p {
             font-size: 1.25rem;
-            margin-bottom: 2rem;
-            color: rgba(255,255,255,0.9);
-            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.9;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .cta-button {
             display: inline-block;
-            background-color: var(--secondary);
-            color: var(--primary);
-            padding: 0.95rem 2rem;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-copper) 100%);
+            color: var(--primary-dark);
+            padding: 1.3rem 3.5rem;
             text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            border: 2px solid var(--secondary);
+            border-radius: 10px;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            font-size: 1.1rem;
+            border: none;
             cursor: pointer;
+            box-shadow: 0 10px 30px rgba(201, 169, 97, 0.4);
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.4);
+            transition: left 0.4s ease;
+            z-index: 0;
+        }
+
+        .cta-button span {
+            position: relative;
+            z-index: 1;
         }
 
         .cta-button:hover {
-            background-color: transparent;
-            color: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px rgba(201, 169, 97, 0.6);
         }
 
-        /* INFO SECTION */
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button.secondary {
+            background: linear-gradient(135deg, var(--accent-rose), #c85a7d);
+            box-shadow: 0 10px 30px rgba(212, 105, 143, 0.4);
+        }
+
+        .cta-button.secondary:hover {
+            box-shadow: 0 15px 40px rgba(212, 105, 143, 0.6);
+        }
+
+        /* ===== DECORATIVE ELEMENTS ===== */
+        .hero-decoration {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            font-size: 2rem;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            padding: 5rem 2rem;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== INFO SECTION ===== */
         .info-section {
-            background-color: var(--light-bg);
-            padding: 3rem 1rem;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-lighter) 100%);
+            padding: 4rem 2rem;
         }
 
         .info-container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .info-container {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .info-card {
             background: white;
-            padding: 2rem;
-            border-radius: 4px;
-            border-left: 4px solid var(--secondary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 3rem;
+            border-radius: 12px;
+            border: 2px solid var(--border-subtle);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-rose));
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .info-card:hover::before {
+            transform: scaleY(1);
         }
 
         .info-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(201, 169, 97, 0.15);
+            border-color: var(--accent-gold);
         }
 
         .info-card h3 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-weight: 800;
         }
 
         .info-card p {
-            color: var(--text);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .info-card strong {
+            color: var(--accent-gold);
+            font-weight: 700;
         }
 
         .info-card a {
-            color: var(--secondary);
+            color: var(--accent-rose);
             text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 0.8rem;
+            position: relative;
+        }
+
+        .info-card a::after {
+            content: ' →';
+            transition: transform 0.3s ease;
         }
 
         .info-card a:hover {
-            color: var(--primary);
+            color: var(--accent-gold);
+            transform: translateX(4px);
         }
 
-        /* MENU SECTION */
+        /* ===== MENU SECTION ===== */
         .menu-section {
-            padding: 4rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            background: white;
         }
 
-        .menu-section h2 {
+        .section-header {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-weight: 900;
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold) 20%, var(--accent-rose) 50%, var(--accent-gold) 80%, transparent);
+            border-radius: 2px;
         }
 
         .section-subtitle {
             text-align: center;
-            color: var(--secondary);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
+            color: var(--accent-rose);
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            letter-spacing: 1.5px;
+            font-weight: 600;
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
         }
 
         .menu-category {
-            background: white;
-            padding: 2rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            background: linear-gradient(135deg, #fafbfc 0%, #f8f9fa 100%);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border: 2px solid var(--border-subtle);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-rose));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            transform-origin: left;
+        }
+
+        .menu-category:hover::before {
+            transform: scaleX(1);
+        }
+
+        .menu-category:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(201, 169, 97, 0.15);
+            border-color: var(--accent-gold);
         }
 
         .menu-category h3 {
-            color: var(--secondary);
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 0.8rem;
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a2a3a 100%);
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: 1px;
         }
 
         .menu-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px dashed var(--border);
+            margin-bottom: 2.2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px dotted var(--border-subtle);
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            padding-left: 1rem;
+            background: rgba(201, 169, 97, 0.03);
+            margin-left: -1rem;
+            padding-right: 1rem;
+            margin-right: -1rem;
+            border-radius: 6px;
         }
 
         .menu-item:last-child {
@@ -251,160 +559,332 @@
         }
 
         .menu-item-name {
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.3rem;
-            font-size: 1.05rem;
-        }
-
-        .menu-item-desc {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-            font-style: italic;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 0.6rem;
+            font-size: 1.15rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
         }
 
         .menu-item-price {
-            color: var(--secondary);
-            font-weight: 700;
-            font-size: 1.1rem;
+            color: var(--accent-gold);
+            font-weight: 800;
+            font-size: 1.2rem;
+            white-space: nowrap;
         }
 
-        /* ABOUT SECTION */
+        .menu-item-desc {
+            font-size: 0.95rem;
+            color: #777;
+            margin-bottom: 0;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .menu-footer {
+            text-align: center;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.08), rgba(212, 105, 143, 0.08));
+            border-radius: 12px;
+            border: 2px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-footer::before {
+            content: '✦';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .menu-footer p {
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            margin: 1rem 0;
+            line-height: 1.8;
+        }
+
+        .menu-footer strong {
+            color: var(--accent-rose);
+        }
+
+        /* ===== ABOUT SECTION ===== */
         .about-section {
-            background-color: var(--light-bg);
-            padding: 4rem 1rem;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-lighter) 100%);
         }
 
         .about-container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
-            text-align: center;
+            padding: 0 2rem;
         }
 
         .about-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-dark);
+            font-weight: 900;
+            text-align: center;
+            position: relative;
+        }
+
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold) 20%, var(--accent-rose) 50%, var(--accent-gold) 80%, transparent);
         }
 
         .about-section p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            color: var(--text);
+            font-size: 1.15rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+            color: #555;
+            text-align: center;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .about-highlights {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
 
         .highlight {
             background: white;
-            padding: 2rem;
-            border-radius: 4px;
-            border-top: 3px solid var(--secondary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 3rem 2.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border-subtle);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-rose));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            transform-origin: left;
+        }
+
+        .highlight:hover::before {
+            transform: scaleX(1);
+        }
+
+        .highlight:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(201, 169, 97, 0.15);
+            border-color: var(--accent-gold);
+        }
+
+        .highlight-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .highlight:nth-child(2) .highlight-icon {
+            animation-delay: 0.5s;
+        }
+
+        .highlight:nth-child(3) .highlight-icon {
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .highlight h4 {
-            color: var(--secondary);
-            margin-bottom: 0.8rem;
-            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
         }
 
         .highlight p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #666;
             margin: 0;
+            line-height: 1.7;
+            text-align: center;
         }
 
-        /* CONTACT SECTION */
+        /* ===== CONTACT SECTION ===== */
         .contact-section {
-            padding: 4rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            background: white;
         }
 
         .contact-section h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--primary);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+            font-weight: 900;
+            position: relative;
+        }
+
+        .contact-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold) 20%, var(--accent-rose) 50%, var(--accent-gold) 80%, transparent);
         }
 
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
+            gap: 3.5rem;
+            margin-top: 4rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 2rem;
         }
 
         .contact-info {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.03), rgba(212, 105, 143, 0.03));
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border: 2px solid var(--border-subtle);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-rose));
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .contact-info:hover::before {
+            transform: scaleY(1);
+        }
+
+        .contact-info:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(201, 169, 97, 0.15);
         }
 
         .contact-info h3 {
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
         }
 
         .contact-info p {
             margin-bottom: 1.5rem;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #555;
         }
 
         .contact-info strong {
-            color: var(--primary);
+            color: var(--accent-gold);
+            font-weight: 700;
         }
 
         .contact-buttons {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 1.2rem;
+            margin-top: 2.5rem;
         }
 
         .contact-buttons a, 
         .contact-buttons button {
             display: inline-block;
-            background-color: var(--secondary);
-            color: var(--primary);
-            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-copper));
+            color: var(--primary-dark);
+            padding: 1.1rem 2.5rem;
             text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
+            border-radius: 10px;
+            font-weight: 700;
             text-align: center;
             border: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            box-shadow: 0 6px 20px rgba(201, 169, 97, 0.3);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-buttons a::before,
+        .contact-buttons button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.3);
+            transition: left 0.3s ease;
+        }
+
+        .contact-buttons a span,
+        .contact-buttons button span {
+            position: relative;
+            z-index: 1;
         }
 
         .contact-buttons a:hover,
         .contact-buttons button:hover {
-            background-color: var(--primary);
-            color: var(--secondary);
-            transform: translateY(-2px);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(201, 169, 97, 0.5);
+        }
+
+        .contact-buttons a:hover::before,
+        .contact-buttons button:hover::before {
+            left: 100%;
         }
 
         .map-container {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a2a3a 50%, var(--primary-light) 100%);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             height: 100%;
             min-height: 400px;
             display: flex;
@@ -412,78 +892,358 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            color: white;
+            border: 2px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201, 169, 97, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: floatSlow 10s ease-in-out infinite;
         }
 
         .map-container h3 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
         }
 
         .map-container p {
-            color: var(--text);
-            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .map-container p:last-of-type {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
         }
 
         .map-container a {
-            color: var(--secondary);
+            color: var(--accent-gold);
             text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: rgba(201, 169, 97, 0.2);
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+            border: 2px solid var(--accent-gold);
         }
 
         .map-container a:hover {
-            color: var(--primary);
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(201, 169, 97, 0.4);
         }
 
-        /* FOOTER */
+        /* ===== FOOTER ===== */
         footer {
-            background-color: var(--primary);
-            color: var(--secondary);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a2a3a 50%, var(--primary-light) 100%);
+            color: var(--accent-gold);
             text-align: center;
-            padding: 2rem 1rem;
-            margin-top: 3rem;
+            padding: 3.5rem 2rem;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-top: 0;
+            border-top: 3px solid var(--accent-gold);
             font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), var(--accent-rose), var(--accent-gold), transparent);
         }
 
         footer p {
-            margin: 0.5rem 0;
+            margin: 0.8rem 0;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
 
-        /* TYPOGRAPHY */
-        h1, h2, h3, h4, h5, h6 {
+        footer p:first-child {
             font-weight: 700;
+            font-size: 1.15rem;
             margin-bottom: 1rem;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
+        footer strong {
+            color: var(--accent-rose);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+
             .hero h1 {
+                font-size: 3.8rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.8rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 1.5rem;
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1.5rem;
+            }
+
+            .header-nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .logo {
                 font-size: 2rem;
+            }
+
+            .hero {
+                padding: 5rem 1.5rem;
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+                min-height: 500px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+            }
+
+            .section-content {
+                padding: 0 1.5rem;
+            }
+
+            .info-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1.5rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                padding: 0 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .about-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 2.5rem 1.5rem;
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+            }
+        }
+
+        @media (max-width: 640px) {
+            header {
+                padding: 0.8rem 1rem;
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+            }
+
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            .tagline {
+                font-size: 0.8rem;
+            }
+
+            .nav-link {
+                display: none;
+            }
+
+            .hero {
+                padding: 4rem 1rem;
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+                min-height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
             }
 
             .hero p {
                 font-size: 1rem;
             }
 
-            .menu-section h2,
-            .about-section h2,
-            .contact-section h2 {
-                font-size: 1.8rem;
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 0.95rem;
             }
 
-            .logo {
-                font-size: 1.8rem;
+            section {
+                padding: 3rem 1rem;
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
             }
 
-            .tagline {
-                font-size: 0.85rem;
+            .section-content {
+                padding: 0 1rem;
+            }
+
+            .info-container {
+                padding: 0 1rem;
+            }
+
+            .contact-grid {
+                padding: 0 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .menu-category {
+                padding: 2rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+                font-size: 0.9rem;
             }
         }
 
-        /* SCROLL SMOOTH */
-        a[href^="#"] {
-            color: var(--secondary);
-            text-decoration: none;
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .hero {
+                padding: 3rem 0.8rem;
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+                min-height: 350px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .hero::before,
+            .hero::after {
+                display: none;
+            }
+
+            .cta-button {
+                padding: 0.9rem 1.8rem;
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 2.5rem 0.8rem;
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+            }
+
+            .info-card {
+                padding: 2rem;
+            }
+
+            .menu-category {
+                padding: 1.8rem;
+            }
+
+            .contact-info {
+                padding: 1.8rem;
+            }
+
+            footer {
+                padding: 1.5rem 0.8rem;
+                width: 100vw;
+                margin-left: calc(-50vw + 50%);
+            }
+        }
+
+        @media (max-width: 360px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
         }
     </style>
 </head>
@@ -491,17 +1251,29 @@
     <!-- HEADER -->
     <header>
         <div class="header-content">
-            <div class="logo">Bnb</div>
-            <div class="tagline">Saveurs généreuses & moments partagés</div>
+            <div class="header-left">
+                <div class="logo">Bnb</div>
+                <div class="tagline">Gastronomie • Convivialité • Passion</div>
+            </div>
+            <nav class="header-nav">
+                <a href="#menu" class="nav-link">Menu</a>
+                <a href="#about" class="nav-link">À Propos</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <button class="reserve-btn">Réserver</button>
+            </nav>
         </div>
     </header>
 
     <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Bienvenue chez Bnb</h1>
-            <p>Une cuisine généreuse et savoureuse dans une ambiance chaleureuse à Ivry-sur-Seine</p>
-            <a href="#menu" class="cta-button">Découvrez le Menu</a>
+            <div class="hero-subtitle">✦ Bienvenue ✦</div>
+            <h1>Bnb</h1>
+            <p>Une expérience culinaire généreuse et authentique<br>au cœur d'Ivry-sur-Seine</p>
+            <div class="cta-buttons">
+                <a href="#menu" class="cta-button"><span>Découvrir le Menu</span></a>
+                <a href="#contact" class="cta-button secondary"><span>Réserver une Table</span></a>
+            </div>
         </div>
     </section>
 
@@ -512,133 +1284,163 @@
                 <h3>📍 Localisation</h3>
                 <p><strong>39 Rue Gabriel Péri</strong></p>
                 <p>94200 Ivry-sur-Seine, France</p>
-                <a href="https://www.google.com/maps/search/Bnb+39+Rue+Gabriel+P%C3%A9ri+Ivry-sur-Seine" target="_blank" rel="noopener">Voir sur Google Maps →</a>
+                <p style="color: #999; font-size: 0.9rem;">À proximité du métro ligne 7</p>
+                <a href="https://www.google.com/maps/search/Bnb+39+Rue+Gabriel+P%C3%A9ri+Ivry-sur-Seine" target="_blank" rel="noopener">Voir sur Google Maps</a>
             </div>
             <div class="info-card">
                 <h3>🕐 Horaires</h3>
                 <p><strong>Lundi - Jeudi :</strong> 11h30 - 23h00</p>
                 <p><strong>Vendredi - Samedi :</strong> 11h30 - 00h00</p>
                 <p><strong>Dimanche :</strong> 12h00 - 22h30</p>
+                <p style="color: #999; font-size: 0.9rem; margin-top: 1rem;">Réservations recommandées le week-end</p>
             </div>
         </div>
     </section>
 
     <!-- MENU -->
     <section class="menu-section" id="menu">
-        <h2>Notre Menu</h2>
-        <p class="section-subtitle">Saveurs authentiques & créations maison</p>
+        <div class="section-header">
+            <h2>Notre Menu</h2>
+            <p class="section-subtitle">Saveurs Authentiques • Créations Maison • Qualité Première</p>
+        </div>
         
         <div class="menu-grid">
             <!-- Entrées -->
             <div class="menu-category">
-                <h3>Entrées</h3>
+                <h3>🥗 Entrées</h3>
                 
                 <div class="menu-item">
-                    <div class="menu-item-name">Soupe à l'Oignon</div>
+                    <div class="menu-item-name">
+                        <span>Soupe à l'Oignon</span>
+                        <span class="menu-item-price">8€</span>
+                    </div>
                     <div class="menu-item-desc">Gratinée au fromage, recette traditionnelle</div>
-                    <div class="menu-item-price">8€</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Salade Niçoise</div>
+                    <div class="menu-item-name">
+                        <span>Salade Niçoise</span>
+                        <span class="menu-item-price">10€</span>
+                    </div>
                     <div class="menu-item-desc">Tomates, œufs, thon frais, olives noires</div>
-                    <div class="menu-item-price">10€</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Assiette Charcuterie & Fromage</div>
+                    <div class="menu-item-name">
+                        <span>Assiette Charcuterie & Fromage</span>
+                        <span class="menu-item-price">12€</span>
+                    </div>
                     <div class="menu-item-desc">Sélection de nos meilleurs produits régionaux</div>
-                    <div class="menu-item-price">12€</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Calamars à l'Encre</div>
+                    <div class="menu-item-name">
+                        <span>Calamars à l'Encre</span>
+                        <span class="menu-item-price">11€</span>
+                    </div>
                     <div class="menu-item-desc">Tendres et savoureux, sauce citron</div>
-                    <div class="menu-item-price">11€</div>
                 </div>
             </div>
 
             <!-- Plats Principaux -->
             <div class="menu-category">
-                <h3>Plats Principaux</h3>
+                <h3>🍖 Plats Principaux</h3>
                 
                 <div class="menu-item">
-                    <div class="menu-item-name">Coq au Vin</div>
+                    <div class="menu-item-name">
+                        <span>Coq au Vin</span>
+                        <span class="menu-item-price">16€</span>
+                    </div>
                     <div class="menu-item-desc">Cuit lentement au vin rouge, légumes racines</div>
-                    <div class="menu-item-price">16€</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Steak Frites</div>
+                    <div class="menu-item-name">
+                        <span>Steak Frites</span>
+                        <span class="menu-item-price">18€</span>
+                    </div>
                     <div class="menu-item-desc">Viande tendre & saignante, frites maison</div>
-                    <div class="menu-item-price">18€</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Branzino Rôti</div>
+                    <div class="menu-item-name">
+                        <span>Branzino Rôti</span>
+                        <span class="menu-item-price">17€</span>
+                    </div>
                     <div class="menu-item-desc">Filet de bar, herbes et citron frais</div>
-                    <div class="menu-item-price">17€</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Pâtes Carbonara</div>
+                    <div class="menu-item-name">
+                        <span>Pâtes Carbonara</span>
+                        <span class="menu-item-price">13€</span>
+                    </div>
                     <div class="menu-item-desc">Crème fraîche, œufs, pancetta croustillante</div>
-                    <div class="menu-item-price">13€</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Magret de Canard</div>
+                    <div class="menu-item-name">
+                        <span>Magret de Canard</span>
+                        <span class="menu-item-price">19€</span>
+                    </div>
                     <div class="menu-item-desc">Sauce aux cerises, accompagnements de saison</div>
-                    <div class="menu-item-price">19€</div>
                 </div>
             </div>
 
-            <!-- Desserts & Boissons -->
+            <!-- Desserts -->
             <div class="menu-category">
-                <h3>Desserts</h3>
+                <h3>🍰 Desserts</h3>
                 
                 <div class="menu-item">
-                    <div class="menu-item-name">Tiramisu Maison</div>
+                    <div class="menu-item-name">
+                        <span>Tiramisu Maison</span>
+                        <span class="menu-item-price">7€</span>
+                    </div>
                     <div class="menu-item-desc">Mascarpone, cacao, cuillerées de café</div>
-                    <div class="menu-item-price">7€</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Crème Brûlée</div>
+                    <div class="menu-item-name">
+                        <span>Crème Brûlée</span>
+                        <span class="menu-item-price">7€</span>
+                    </div>
                     <div class="menu-item-desc">Caramélisée à la vanille de Tahiti</div>
-                    <div class="menu-item-price">7€</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Tarte Tatin</div>
+                    <div class="menu-item-name">
+                        <span>Tarte Tatin</span>
+                        <span class="menu-item-price">6€</span>
+                    </div>
                     <div class="menu-item-desc">Pommes caramélisées, pâte feuilletée</div>
-                    <div class="menu-item-price">6€</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Chocolat Fondant</div>
+                    <div class="menu-item-name">
+                        <span>Chocolat Fondant</span>
+                        <span class="menu-item-price">7€</span>
+                    </div>
                     <div class="menu-item-desc">Coulant au cœur, servi avec glaçon vanille</div>
-                    <div class="menu-item-price">7€</div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="menu-item-name">Sorbet Maison</div>
+                    <div class="menu-item-name">
+                        <span>Sorbet Maison</span>
+                        <span class="menu-item-price">5€</span>
+                    </div>
                     <div class="menu-item-desc">Fruits frais selon la saison</div>
-                    <div class="menu-item-price">5€</div>
                 </div>
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 2rem; padding: 2rem; background: white; border-radius: 4px; border-left: 4px solid #d4af37;">
-            <p style="color: #666; font-size: 1rem; margin: 0;">
-                <strong>Menu complet disponible à la carte.</strong> Nous proposons également des formules spéciales en semaine. <br>
-                N'hésitez pas à nous contacter pour les allergies et régimes particuliers.
-            </p>
+        <div class="menu-footer">
+            <p><strong>Menu complet disponible à la carte.</strong> Nous proposons également des formules spéciales en semaine.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">N'hésitez pas à nous contacter pour les allergies et régimes particuliers.</p>
         </div>
     </section>
 
     <!-- ABOUT -->
-    <section class="about-section">
+    <section class="about-section" id="about">
         <div class="about-container">
             <h2>À Propos de Bnb</h2>
             <p>
@@ -653,15 +1455,18 @@
 
             <div class="about-highlights">
                 <div class="highlight">
-                    <h4>🍽️ Cuisine Généreuse</h4>
-                    <p>Des portions généreuses et savoureux qui reflètent notre passion pour la bonne cuisine</p>
+                    <span class="highlight-icon">🍽️</span>
+                    <h4>Cuisine Généreuse</h4>
+                    <p>Des portions généreuses et savoureuses qui reflètent notre passion pour la bonne cuisine</p>
                 </div>
                 <div class="highlight">
-                    <h4>🌿 Ingrédients Frais</h4>
+                    <span class="highlight-icon">🌿</span>
+                    <h4>Ingrédients Frais</h4>
                     <p>Approvisionnement local et produits de saison pour une qualité optimale</p>
                 </div>
                 <div class="highlight">
-                    <h4>👨‍🍳 Équipe Expérimentée</h4>
+                    <span class="highlight-icon">👨‍🍳</span>
+                    <h4>Équipe Expérimentée</h4>
                     <p>Chefs passionnés et personnel attentif pour votre confort</p>
                 </div>
             </div>
@@ -669,17 +1474,22 @@
     </section>
 
     <!-- CONTACT -->
-    <section class="contact-section">
+    <section class="contact-section" id="contact">
         <h2>Nous Contacter</h2>
         
         <div class="contact-grid">
             <div class="contact-info">
-                <h3>Coordonnées</h3>
+                <h3>📞 Coordonnées</h3>
                 
                 <p>
                     <strong>Adresse</strong><br>
                     39 Rue Gabriel Péri<br>
                     94200 Ivry-sur-Seine, France
+                </p>
+
+                <p>
+                    <strong>Téléphone</strong><br>
+                    <a href="tel:+33123456789" style="color: var(--accent-rose); text-decoration: none; font-weight: 700;">+33 1 23 45 67 89</a>
                 </p>
 
                 <p>
@@ -692,21 +1502,24 @@
                 <p>
                     <strong>Nos Services</strong><br>
                     ✓ Dîner sur place<br>
-                    ✓ Réservations possible<br>
+                    ✓ Réservations possibles<br>
                     ✓ Ambiance conviviale
                 </p>
 
                 <div class="contact-buttons">
                     <a href="https://www.google.com/maps/search/Bnb+39+Rue+Gabriel+P%C3%A9ri+Ivry-sur-Seine" target="_blank" rel="noopener">
-                        📍 Google Maps
+                        <span>📍 Google Maps</span>
                     </a>
+                    <button onclick="alert('Réservation en ligne disponible bientôt!')">
+                        <span>🔖 Réserver une Table</span>
+                    </button>
                 </div>
             </div>
 
             <div class="map-container">
-                <h3>Localisation</h3>
-                <p>Retrouvez-nous facilement à Ivry-sur-Seine</p>
-                <p style="font-size: 0.9rem; color: #999;">
+                <h3>Retrouvez-nous</h3>
+                <p>À Ivry-sur-Seine, une adresse de référence</p>
+                <p>
                     39 Rue Gabriel Péri<br>
                     94200 Ivry-sur-Seine<br>
                     Île-de-France, France
@@ -720,10 +1533,9 @@
 
     <!-- FOOTER -->
     <footer>
-        <p><strong>Bnb</strong> - 39 Rue Gabriel Péri, 94200 Ivry-sur-Seine</p>
-        <p>&copy; 2024 Bnb. Tous droits réservés.</p>
-        <p>Créé avec passion pour votre plaisir gourmand</p>
+        <p><strong>Bnb</strong> • 39 Rue Gabriel Péri, 94200 Ivry-sur-Seine</p>
+        <p>&copy; 2024 Restaurant Bnb. Tous droits réservés.</p>
+        <p>Créé avec <strong style="color: var(--accent-rose);">❤</strong> pour votre plaisir gourmand</p>
     </footer>
 </body>
 </html>
-```
